@@ -1,0 +1,130 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* FONDO */
+.inicio-bg {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('../imagenes/fondo.jpg'); /* puedes cambiar la imagen */
+    background-size: cover;
+    background-position: center;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: #0d1b2a;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    color: #e0e1dd;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: 0.3s;
+    text-transform: capitalize;
+}
+
+.menu-item:hover {
+    background: #1b263b;
+}
+
+.menu-item.active {
+    background: #00bcd4;
+    color: white;
+}
+
+/* HEADER */
+header {
+    margin-left: 200px;
+    height: 70px;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    backdrop-filter: blur(5px);
+}
+
+/* ZONAS HEADER */
+.left-area,
+.title-area,
+.right-area {
+    display: flex;
+    align-items: center;
+}
+
+.title-area {
+    flex: 1;
+    justify-content: center;
+}
+
+.title-area h1 {
+    font-size: 24px;
+    color: #0d1b2a;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    background: #415a77;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background: #1b263b;
+}
+
+/* BOTONES LOGIN */
+.auth-buttons .btn {
+    margin-left: 10px;
+}
+
+.btn {
+    background: #00bcd4;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0097a7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 160px;
+    }
+
+    header {
+        margin-left: 160px;
+    }
+
+    .title-area h1 {
+        font-size: 18px;
+    }
+
+    .btn, .btn-volver {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

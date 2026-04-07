@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: #1e3c72;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.sidebar ul li:hover {
+    background: #2a5298;
+}
+
+.logout {
+    display: block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    background: #e74c3c;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* CONTENIDO */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: #f5f6fa;
+}
+
+/* HEADER */
+.header {
+    background: rgb(122, 37, 37);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* SECCIONES */
+.section {
+    margin-bottom: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+/* TARJETAS */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+#costos {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+/* TABLA */
+#costos table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* ENCABEZADOS */
+#costos th {
+    background: #3b82f6;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+/* CELDAS */
+#costos td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+/* EFECTO HOVER */
+#costos tr:hover {
+    background: #f1f5f9;
+}
+
+/* VALOR (DINERO) */
+#costos td:first-child {
+    font-weight: bold;
+    color: #16a34a;
+}

@@ -1,0 +1,168 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Fondo general */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #333;
+    padding: 20px;
+}
+
+/* Título */
+h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del formulario */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+form input,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+/* Focus */
+form input:focus,
+form select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+/* Botón crear */
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #667eea;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #5a67d8;
+}
+
+/* Mensajes */
+#mensaje {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Encabezado */
+table th {
+    background: #667eea;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+/* Filas */
+table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+/* Hover filas */
+table tr:hover {
+    background: #f5f7ff;
+}
+
+/* Botones de acción */
+a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+}
+
+/* Activar */
+a[href*="activo"] {
+    background: #28a745;
+}
+
+/* Desactivar */
+a[href*="inactivo"] {
+    background: #dc3545;
+}
+
+/* Botón cerrar sesión */
+button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    background: #222;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    table td::before {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    table td:nth-of-type(1)::before { content: "ID"; }
+    table td:nth-of-type(2)::before { content: "Nombre"; }
+    table td:nth-of-type(3)::before { content: "Correo"; }
+    table td:nth-of-type(4)::before { content: "Rol"; }
+    table td:nth-of-type(5)::before { content: "Estado"; }
+    table td:nth-of-type(6)::before { content: "Acción"; }
+}

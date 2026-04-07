@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - DriverCar</title>
+    <link rel="stylesheet" href="../css/registrarse.css">
+</head>
+<body>
+<form action="../programas/registrar.php" method="POST">
+    <div class="container-wrap">
+        <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
+
+        <div class="registro-container">
+            <h2>Crear Cuenta</h2>
+
+                <label>Nombre</label>
+                <input type="text" name="nombre" required>
+
+                <label>Apellido</label>
+                <input type="text" name="apellido" required>
+
+                <label>Tipo de documento</label>
+                <select name="tipo_documento" required>
+                <option value="">Seleccione tipo de documento</option>
+                <option value="CC">Cedula de ciudadania</option>
+                <option value="PPT">Permiso por proteccion especial</option>
+                <option value="TI">Tarjeta de identidad</option>
+                </select>
+                
+                <label>Numero de documento</label>
+                <input type="text" name="numero_documento" required>
+
+                <label>Fecha de nacimiento</label>
+                <input type="date" name="fecha_nacimiento" required>
+
+                <label>Teléfono</label>
+                <input type="text" name="telefono" required>
+
+                <label>Direccion</label>
+                <input type="text" name="direccion" required>
+
+                <label>Ciudad</label>
+                <input type="text" name="ciudad">
+
+                <label>Correo electrónico</label>
+                <input type="email" name="correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" name="contrasena" required>
+
+                <label>Confirmar contraseña</label>
+                <input type="password" name="contrasena2" required>
+                <label>Rol</label>
+                <select name="id_rol" required>
+                    <option value="">Seleccione un rol...</option>
+                    <option value="2">Estudiante</option>
+                    <option value="3">Profesor</option>
+                </select>
+                <div name="error" class="error"></div>
+
+                <button type="submit">Registrarme</button>
+            </form>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

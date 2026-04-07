@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivercar</title>
+    <link rel="stylesheet" href="css/inicio.css">
+</head>
+
+<body class="inicio-bg">
+
+    <div class="sidebar">
+        <a href="index.html" class="menu-item active">inicio</a>
+        <a href="html/info.html" class="menu-item">informacion</a>
+        <a href="html/cursos.html" class="menu-item">cursos</a>
+        <a href="html/contactenos.html" class="menu-item">contactenos</a>
+        
+    </div>
+
+    <header>
+        <div class="left-area">
+            <button class="btn-volver"
+                onclick="if(history.length>1){history.back();} else {window.location.href='index.html';}">
+                ⬅ Volver
+            </button>
+        </div>
+
+        <div class="title-area">
+            <h1>Bienvenido</h1>
+        </div>
+
+        <div class="right-area auth-buttons">
+    <button class="btn" onclick="window.location.href='html/inicioSesion.html'">Iniciar sesión</button>
+   <button class="btn" onclick="window.location.href='html/registrarse.html'">Registrarse</button>
+
+</div>
+
+    </header>
+
+</body>
+</html>
+

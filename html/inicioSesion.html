@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - DriverCar</title>
+    <link rel="stylesheet" href="../css/inicioSesion.css">
+</head>
+<body>
+<div class="container-wrap">
+    <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
+
+    <div class="registro-container">
+        <h2>Iniciar Sesión</h2>
+
+        <form action="../programas/login.php" method="POST">
+            <label>Correo electrónico</label>
+            <input type="email" name="email" required>
+
+            <label>Contraseña</label>
+            <input type="password" name="password" required>
+            <button type="submit">Ingresar</button>
+            <a href="../programas/recuperar.php">¿Olvidaste tu contraseña?</a>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById("formLogin").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    let usuario = usuarios.find(u => 
+        u.email === email &&
+        u.password === password
+    );
+
+    if (!usuario) {
+        error.textContent = "Datos incorrectos o rol no coincide.";
+        return;
+    }
+
+    localStorage.setItem("sesionActiva", JSON.stringify(usuario));
+
+// Redirección según rol
+if (usuario.id_rol == 1) {
+    window.location.href = "../html/admin.php";
+} else if (usuario.id_rol == 3) {
+    window.location.href = "../html/profesor.php";
+} else if (usuario.id_rol == 2) {
+    window.location.href = "../html/estudiante.html";
+}
+});
+</script>
+
+</body>
+</html>
+
