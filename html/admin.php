@@ -84,7 +84,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
         </table>
     </div>
 
-    <button class="logout" onclick="cerrarSesion()">Cerrar sesión</button>
+    <a href="../programas/logout.php" class="logout">Cerrar sesión</a>
 
 </div>
 </body>
