@@ -1,0 +1,115 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BODY */
+body {
+    background: #f4f6f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: #0d1b2a;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    color: #e0e1dd;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: 0.3s;
+    text-transform: capitalize;
+}
+
+.menu-item:hover {
+    background: #1b263b;
+}
+
+.menu-item.active {
+    background: #00bcd4;
+    color: white;
+}
+
+/* HEADER */
+header {
+    margin-left: 200px;
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 22px;
+    color: #0d1b2a;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    background: #415a77;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background: #1b263b;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+    margin-left: 220px;
+    padding: 40px;
+}
+
+/* TARJETA DE INFORMACIÓN */
+main h2 {
+    margin-bottom: 15px;
+    color: #0d1b2a;
+}
+
+main p {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 1.6;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 160px;
+    }
+
+    header {
+        margin-left: 160px;
+    }
+
+    main {
+        margin-left: 160px;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+}

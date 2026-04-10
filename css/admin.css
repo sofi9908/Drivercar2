@@ -1,0 +1,88 @@
+/* Fondo */
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+/* Contenedor */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Tarjetas */
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+/* Botones */
+button {
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estados */
+.activo {
+    color: green;
+    font-weight: bold;
+}
+
+.inactivo {
+    color: red;
+    font-weight: bold;
+}
+
+/* Botones acción */
+.btn {
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.green {
+    background: green;
+}
+
+.red {
+    background: red;
+}
+
+/* Logout */
+.logout {
+    background: black;
+    margin-top: 20px;
+}

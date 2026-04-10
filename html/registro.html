@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/stilos.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">registro</div>
+        <form id="form-validation" novalidate>
+            <div class="form-group">
+                <span>Nombre</span>
+                <input type="text" placeholder="ingrese nombre" required>
+                <small>por favor ingrese nombre</small>
+            </div>
+            <div class="form-group">
+                <span>usuario</span>
+                <input type="text" placeholder="ingrese usuario" required>
+                <small>por favor ingrese usuario</small>
+            </div>
+            <div class="form-group">
+                <span>email</span>
+                <input type="email" placeholder="ingrese email" required>
+                <small>por favor ingrese email</small>
+            </div>
+            <div class="form-group">
+                <span>telefono</span>
+                <input type="number" placeholder="ingrese numero de telefono" required>
+                <small>por famor ingrese numero de telefono</small>
+            </div>
+            <div class="form-group">
+                <span>contraseña</span>
+                <input type="password" placeholder="ingrese contraseña" required>
+                <small>por favor ingrese una contraseña</small>
+            </div>
+            <div class="form-group">
+                <span>confirmar contraseña</span>
+                <input type="password" placeholder="ingrese contraseña nuevamente" required>
+                <small>por favor digite su contraseña nueva mente</small>
+            </div>
+            <div class="button">
+                <input type="submit" value="registrarse">
+            </div>
+        </form>
+    </div>
+    <script>
+        const addform = document.getElementById
+        ("form-validation");
+        addform.addEventListener("submit", (e)=>{
+            if (addform.checkVisibility() ===false){
+                e.preventDefault();
+                e.stopPropagation();
+                addform.classList.add(`was-validate`);
+                return false 
+            }
+        })
+    </script>
+</body>
+
+</html>
