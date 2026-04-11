@@ -88,3 +88,9 @@ main p {
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
