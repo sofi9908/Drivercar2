@@ -33,6 +33,8 @@ VALUES
 
 if(mysqli_query($conexion, $sql)){
 
+$id_usuario = mysqli_insert_id($conexion);
+
 if($id_rol == 2){ // estudiante
         $sqlEstudiante = "INSERT INTO estudiantes (id_usuario) VALUES ('$id_usuario')";
         mysqli_query($conexion, $sqlEstudiante);
@@ -42,7 +44,7 @@ if($id_rol == 2){ // estudiante
         $sqlProfesor = "INSERT INTO profesores (id_usuario) VALUES ('$id_usuario')";
         mysqli_query($conexion, $sqlProfesor);
     }
-    echo "<script>alert('Registro exitoso'); window.location='../html/inicioSesion.html';</script>";
+    echo "<script>alert('Registro exitoso'); window.location='../html/inicioSesion.php';</script>";
 } else {
     echo "Error: " . mysqli_error($conexion);
 }

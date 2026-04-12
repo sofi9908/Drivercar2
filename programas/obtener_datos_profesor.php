@@ -69,9 +69,13 @@ WHERE c.idProfesor = $id_profesor
 ";
 $resClases_programadas = mysqli_query($conexion, $sqlClases_programadas);
 // Obtener cursos (aún sin filtro)
+
 $sqlCursos = "
-SELECT modalidad, tipo_licencia, idEstudiante 
-FROM cursos
+SELECT c.modalidad, c.tipo_licencia, u.nombre, u.apellido
+FROM cursos c
+INNER JOIN estudiantes e ON c.idEstudiante = e.id_estudiante
+INNER JOIN usuarios u ON e.id_usuario = u.id_usuario
+WHERE e.id_profesor = '$id_profesor'
 ";
 $resCursos = mysqli_query($conexion, $sqlCursos);
 

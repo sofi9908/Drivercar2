@@ -7,73 +7,122 @@
     <link rel="stylesheet" href="../css/registrarse.css">
 </head>
 <body>
-<form action="../programas/registrar.php" method="POST">
-    <div class="container-wrap">
-        <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
 
-        <div class="registro-container">
-            <h2>Crear Cuenta</h2>
+<div class="container-wrap">
 
-                <label>Nombre</label>
-                <input type="text" name="nombre" required>
+    <button class="btn-volver" onclick="window.location.href='../index.html'">⬅ Volver</button>
 
-                <label>Apellido</label>
-                <input type="text" name="apellido" required>
+    <div class="registro-card">
 
-                <label>Tipo de documento</label>
-                <select name="tipo_documento" required>
-                <option value="">Seleccione tipo de documento</option>
-                <option value="CC">Cedula de ciudadania</option>
-                <option value="PPT">Permiso por proteccion especial</option>
-                <option value="TI">Tarjeta de identidad</option>
-                </select>
-                
-                <label>Numero de documento</label>
-                <input type="text" name="numero_documento" required>
+        <div class="login-logo">
+            <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
+            <span>drivercar</span>
+        </div>
 
-                <label>Fecha de nacimiento</label>
-                <input type="date" name="fecha_nacimiento" required>
+        <h2>Crear <span class="highlight">Cuenta</span></h2>
+        <p class="subtitulo">Completa tus datos para registrarte</p>
 
-                <label>Teléfono</label>
-                <input type="text" name="telefono" required>
+        <form action="../programas/registrar.php" method="POST">
 
-                <label>Direccion</label>
-                <input type="text" name="direccion" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input type="text" name="apellido" placeholder="Tu apellido" required>
+                </div>
+            </div>
 
-                <label>Ciudad</label>
-                <input type="text" name="ciudad">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo de documento</label>
+                    <select name="tipo_documento" required>
+                        <option value="">Seleccione...</option>
+                        <option value="CC">Cédula de ciudadanía</option>
+                        <option value="PPT">Permiso por protección especial</option>
+                        <option value="TI">Tarjeta de identidad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Número de documento</label>
+                    <input type="text" name="numero_documento" placeholder="Ej: 1234567890" required>
+                </div>
+            </div>
 
-                <label>Correo electrónico</label>
-                <input type="email" name="correo" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" placeholder="Ej: 312 456 7890" required>
+                </div>
+            </div>
 
-                <label>Tipo de licencia</label>
-                <select name="tipo_licencia" required>
-                    <option value="">Seleccione tipo de licencia</option>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="B1">B1</option>
-                    <option value="B2">B2</option>
-                    <option value="C1">C1</option>
-                    <option value="C2">C2</option>
-                </select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" placeholder="Tu dirección" required>
+                </div>
+                <div class="form-group">
+                    <label>Ciudad</label>
+                    <input type="text" name="ciudad" placeholder="Tu ciudad">
+                </div>
+            </div>
 
-                <label>Contraseña</label>
-                <input type="password" name="contrasena" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" name="correo" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de licencia</label>
+                    <select name="tipo_licencia" required>
+                        <option value="">Seleccione...</option>
+                        <option value="A1">A1</option>
+                        <option value="A2">A2</option>
+                        <option value="B1">B1</option>
+                        <option value="B2">B2</option>
+                        <option value="C1">C1</option>
+                        <option value="C2">C2</option>
+                    </select>
+                </div>
+            </div>
 
-                <label>Confirmar contraseña</label>
-                <input type="password" name="contrasena2" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="contrasena" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirmar contraseña</label>
+                    <input type="password" name="contrasena2" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label>Rol</label>
                 <select name="id_rol" required>
                     <option value="">Seleccione un rol...</option>
                     <option value="2">Estudiante</option>
                     <option value="3">Profesor</option>
                 </select>
-                <div name="error" class="error"></div>
+            </div>
 
-                <button type="submit">Registrarme</button>
-            </form>
-        </div>
+            <div class="error" id="error"></div>
+
+            <button type="submit" class="btn-principal">Registrarme</button>
+
+            <a href="../html/inicioSesion.php" class="link-volver">¿Ya tienes cuenta? Inicia sesión</a>
+
+        </form>
+
     </div>
-    </form>
+
+</div>
+
 </body>
 </html>

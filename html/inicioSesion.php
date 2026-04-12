@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,8 +11,6 @@
 </head>
 <body>
 
-    <div class="bg-overlay"></div>
-
     <div class="container-wrap">
 
         <button class="btn-volver" onclick="window.location.href='../index.html'">⬅ Volver</button>
@@ -18,11 +19,20 @@
 
             <div class="login-logo">
                 <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
-                <span>drivercar</span>
             </div>
 
             <h2>Iniciar <span class="highlight">Sesión</span></h2>
             <p class="subtitulo">Bienvenido de nuevo, ingresa tus datos</p>
+
+            <?php if(isset($_GET['error'])): ?>
+            <p class="error-msg">
+                <?php
+                    if($_GET['error'] == 'contrasena') echo '❌ Contraseña incorrecta.';
+                    if($_GET['error'] == 'usuario') echo '❌ El correo no está registrado.';
+                    if($_GET['error'] == 'inactivo') echo '❌ Usuario inactivo. Contacta al administrador.';
+                ?>
+            </p>
+            <?php endif; ?>
 
             <form action="../programas/login.php" method="POST">
 
@@ -38,6 +48,15 @@
 
                 <button type="submit" class="btn-ingresar">Ingresar</button>
 
+                <?php if(isset($_GET['error'])): ?>
+<p class="error-msg">
+    <?php
+        if($_GET['error'] == 'contraseña') echo '❌ Contraseña incorrecta.';
+        if($_GET['error'] == 'usuario') echo '❌ El correo no está registrado.';
+    ?>
+</p>
+<?php endif; ?>
+
                 <a href="../programas/recuperar.php" class="link-recuperar">¿Olvidaste tu contraseña?</a>
 
             </form>
@@ -46,39 +65,5 @@
 
     </div>
 
-<script>
-document.getElementById("formLogin").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const error = document.getElementById("error");
-
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    let usuario = usuarios.find(u => 
-        u.email === email &&
-        u.password === password
-    );
-
-    if (!usuario) {
-        error.textContent = "Datos incorrectos o rol no coincide.";
-        return;
-    }
-
-    localStorage.setItem("sesionActiva", JSON.stringify(usuario));
-
-// Redirección según rol
-if (usuario.id_rol == 1) {
-    window.location.href = "../html/admin.php";
-} else if (usuario.id_rol == 3) {
-    window.location.href = "../html/profesor.php";
-} else if (usuario.id_rol == 2) {
-    window.location.href = "../html/estudiante.html";
-}
-});
-</script>
-
 </body>
 </html>
-

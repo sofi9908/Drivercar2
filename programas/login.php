@@ -50,12 +50,13 @@ if ($filas) {
         }
 
     } else {
-        echo "Contraseña incorrecta";
+        header("Location:../html/inicioSesion.php?error=contrasena");
+exit();
     }
 
 } else {
-    echo "Usuario no existe";
-}
-
+    header("Location:../html/inicioSesion.php?error=usuario");
+exit();
+} 
 mysqli_close($conexion);
 ?>

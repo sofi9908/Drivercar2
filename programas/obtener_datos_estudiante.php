@@ -2,7 +2,7 @@
 session_start();
 include("conexion.php");
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 2 || !isset($_SESSION['id_usuario'])) {
-    header("Location: ../html/inicioSesion.html");
+    header("Location: ../html/inicioSesion.php");
     exit();
 }
 
@@ -50,10 +50,9 @@ SELECT
     u.apellido AS profesor_apellido
 FROM clases_programadas c
 
-INNER JOIN estudiantes e ON c.idEstudiante = e.id_estudiante
+LEFT JOIN estudiantes e ON c.idEstudiante = e.id_estudiante
 INNER JOIN profesores p ON c.idProfesor = p.id_profesor
 INNER JOIN usuarios u ON p.id_usuario = u.id_usuario
-
 INNER JOIN autos a ON c.id_auto = a.id_auto
 INNER JOIN dias_semana d ON c.id_dia = d.id_dia
 INNER JOIN bloques_horarios b ON c.id_bloque = b.id_bloque
@@ -72,7 +71,6 @@ WHERE idEstudiante = (
 
 $resCostos = mysqli_query($conexion, $sqlCostos);
 
-// 🔥 PERFIL ESTUDIANTE
 $sqlPerfil = "
 SELECT 
     u.nombre,
@@ -90,4 +88,43 @@ WHERE e.id_usuario = '$id_usuario'
 
 $resPerfil = mysqli_query($conexion, $sqlPerfil);
 $perfil = mysqli_fetch_assoc($resPerfil);
+
+// Próxima clase
+$sqlProxima = "
+    SELECT c.fecha, c.estado, d.nombre_dia, b.hora_inicio, b.hora_fin,
+           u.nombre AS prof_nombre, u.apellido AS prof_apellido
+    FROM clases_programadas c
+    INNER JOIN estudiantes e ON c.idEstudiante = e.id_estudiante
+    INNER JOIN dias_semana d ON c.id_dia = d.id_dia
+    INNER JOIN bloques_horarios b ON c.id_bloque = b.id_bloque
+    INNER JOIN profesores p ON c.idProfesor = p.id_profesor
+    INNER JOIN usuarios u ON p.id_usuario = u.id_usuario
+    WHERE e.id_usuario = '$id_usuario' AND c.estado = 'Pendiente'
+    ORDER BY c.fecha ASC LIMIT 1";
+$resProxima = mysqli_query($conexion, $sqlProxima);
+$proxima = mysqli_fetch_assoc($resProxima);
+
+// Curso dashboard
+$sqlDash = "SELECT modalidad, tipo_licencia FROM cursos WHERE idEstudiante = (
+    SELECT id_estudiante FROM estudiantes WHERE id_usuario = '$id_usuario') LIMIT 1";
+$resDash = mysqli_query($conexion, $sqlDash);
+$cursoDash = mysqli_fetch_assoc($resDash);
+
+// Última nota
+$sqlUltNota = "
+    SELECT n.modalidad, n.observacion
+    FROM notas n
+    INNER JOIN estudiantes e ON n.idEstudiante = e.id_estudiante
+    WHERE e.id_usuario = '$id_usuario'
+    ORDER BY n.id_nota DESC LIMIT 1";
+$resUltNota = mysqli_query($conexion, $sqlUltNota);
+$ultNota = mysqli_fetch_assoc($resUltNota);
+
+// Total pagado
+$sqlTotal = "
+    SELECT SUM(valor) as total FROM costos
+    WHERE idEstudiante = (
+        SELECT id_estudiante FROM estudiantes WHERE id_usuario = '$id_usuario')";
+$resTotal = mysqli_query($conexion, $sqlTotal);
+$total = mysqli_fetch_assoc($resTotal);
 ?>

@@ -5,7 +5,7 @@ include("../programas/obtener_datos_profesor.php");
 
 // Validar sesión
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 3) {
-    header("Location: inicioSesion.html");
+    header("Location: inicioSesion.php");
     exit();
 }
 ?>
@@ -15,7 +15,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 3) {
 <head>
 <meta charset="UTF-8">
 <title>Panel Profesor</title>
-<link rel="stylesheet" href="../css/estu.css">
+<link rel="stylesheet" href="../css/profe.css">
 </head>
 <body>
 
@@ -121,7 +121,7 @@ $bloques = [
                 <div class="card">
                     <p><strong>Modalidad:</strong> <?php echo $curso['modalidad']; ?></p>
                     <p><strong>Licencia:</strong> <?php echo $curso['tipo_licencia']; ?></p>
-                    <p><strong>Estudiante:</strong> <?php echo $curso['idEstudiante']; ?></p>
+                    <p><strong>Estudiante:</strong> <?php echo $curso['nombre'] . " " . $curso['apellido']; ?></p>
                 </div>
             <?php } ?>
         </div>

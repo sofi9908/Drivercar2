@@ -1,87 +1,165 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* FONDO */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background-color: #1a1f2e;
 }
 
-/* CONTENEDOR */
-form {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 320px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('../imagenes/coche.jpg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 0;
 }
 
-/* TITULO */
-form h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #1e3c72;
-}
-
-/* LABEL */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-/* INPUT */
-input {
+.container-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    transition: 0.3s;
+    padding: 40px 20px;
 }
 
-/* EFECTO INPUT */
-input:focus {
-    border-color: #2a5298;
-    outline: none;
-    box-shadow: 0 0 5px rgba(42,82,152,0.3);
-}
-
-/* BOTÓN */
-button {
+.recuperar-card {
+    background-color: #1e2336;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
     width: 100%;
-    padding: 10px;
-    background: #1e3c72;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
-/* HOVER BOTÓN */
-button:hover {
-    background: #16325c;
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
-/* MENSAJES */
-p {
-    text-align: center;
-    margin-top: 10px;
+.login-logo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.login-logo span {
+    color: #ffffff;
     font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
-.volver {
-    display: block;
+
+.recuperar-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
     text-align: center;
+}
+
+.highlight {
+    color: #00e5b0;
+}
+
+.subtitulo {
+    font-size: 14px;
+    color: #a0aabb;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
     margin-top: 10px;
-    color: #1e3c72;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a0aabb;
+}
+
+.form-group input {
+    background-color: #12151f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #4a5068;
+}
+
+.form-group input:focus {
+    border-color: #00e5b0;
+}
+
+.btn-principal {
+    background-color: #00e5b0;
+    color: #12151f;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-principal:hover {
+    background-color: #00c99a;
+    transform: translateY(-2px);
+}
+
+.link-volver {
+    text-align: center;
+    font-size: 13px;
+    color: #00e5b0;
     text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.link-volver:hover {
+    opacity: 0.7;
+}
+
+.error-msg {
+    color: #ff6b6b;
+    font-size: 13px;
+    text-align: center;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    padding: 10px 16px;
+    border-radius: 10px;
+    width: 100%;
 }

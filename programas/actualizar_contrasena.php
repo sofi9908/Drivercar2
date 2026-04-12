@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "UPDATE usuarios SET contrasena='$hash' WHERE correo='$correo'";
 
     if(mysqli_query($conexion, $sql)){
-        header("Location: ../html/inicioSesion.html");
+        header("Location: ../html/inicioSesion.php");
 exit();
     } else {
         echo "Error";

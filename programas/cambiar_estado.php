@@ -3,7 +3,7 @@ session_start();
 include("conexion.php");
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
-    header("Location: ../html/inicioSesion.html");
+    header("Location: ../html/inicioSesion.php");
     exit();
 }
 

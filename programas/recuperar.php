@@ -5,51 +5,81 @@ include("conexion.php");
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/recuperar.css">
-<title>Recuperar contraseña</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/recuperar.css">
+    <title>Recuperar contraseña - DriverCar</title>
 </head>
 <body>
 
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $correo = $_POST['correo'];
+<div class="container-wrap">
 
-    $sql = "SELECT * FROM usuarios WHERE correo='$correo' AND estado='activo'";
-    $res = mysqli_query($conexion, $sql);
+    <div class="recuperar-card">
 
-    if(mysqli_num_rows($res) > 0){
-        ?>
-        <form method="POST" action="actualizar_contrasena.php">
-            <input type="hidden" name="correo" value="<?php echo $correo; ?>">
+        <div class="login-logo">
+            <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
+            <span>drivercar</span>
+        </div>
 
-            <h3>Actualizar contraseña</h3>
+        <?php if($_SERVER['REQUEST_METHOD'] == 'POST'): ?>
+            <?php
+                $correo = mysqli_real_escape_string($conexion, $_POST['correo']);
+                $sql = "SELECT * FROM usuarios WHERE correo='$correo' AND estado='activo'";
+                $res = mysqli_query($conexion, $sql);
+            ?>
 
-            <label>Nueva contraseña:</label>
-            <input type="password" name="nueva" required>
+            <?php if(mysqli_num_rows($res) > 0): ?>
 
-            <button type="submit">Actualizar</button>
-        </form>
-        <?php
-    } else {
-        echo "<p style='color:red;'>Correo no encontrado</p>";
-    }
+                <h2>Nueva <span class="highlight">contraseña</span></h2>
+                <p class="subtitulo">Ingresa tu nueva contraseña</p>
 
-} else {
-?>
+                <form method="POST" action="actualizar_contrasena.php">
+                    <input type="hidden" name="correo" value="<?php echo $correo; ?>">
 
-<form method="POST">
-    <h3>Recuperar contraseña</h3>
+                    <div class="form-group">
+                        <label>Nueva contraseña</label>
+                        <input type="password" name="nueva" placeholder="••••••••" required>
+                    </div>
 
-    <label>Correo:</label>
-    <input type="email" name="correo" required>
+                    <button type="submit" class="btn-principal">Actualizar contraseña</button>
+                    <a href="../html/inicioSesion.php" class="link-volver">Volver al login</a>
+                </form>
 
-    <button type="submit">Buscar</button>
+            <?php else: ?>
 
-    <a href="../html/inicioSesion.html" class="volver">Volver al login</a>
-</form>
+                <h2>Recuperar <span class="highlight">contraseña</span></h2>
+                <p class="error-msg">❌ Correo no encontrado o usuario inactivo.</p>
 
-<?php } ?>
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" name="correo" placeholder="tu@correo.com" required>
+                    </div>
+                    <button type="submit" class="btn-principal">Buscar</button>
+                    <a href="../html/inicioSesion.php" class="link-volver">Volver al login</a>
+                </form>
+
+            <?php endif; ?>
+
+        <?php else: ?>
+
+            <h2>Recuperar <span class="highlight">contraseña</span></h2>
+            <p class="subtitulo">Ingresa tu correo para continuar</p>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" name="correo" placeholder="tu@correo.com" required>
+                </div>
+                <button type="submit" class="btn-principal">Buscar</button>
+                <a href="../html/inicioSesion.php" class="link-volver">Volver al login</a>
+            </form>
+
+        <?php endif; ?>
+
+    </div>
+
+</div>
 
 </body>
 </html>

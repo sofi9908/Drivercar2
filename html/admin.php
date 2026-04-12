@@ -6,7 +6,7 @@ $sql = "SELECT * FROM usuarios";
 $resultado = mysqli_query($conexion, $sql);
 // VALIDACIÓN DE SESIÓN
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
-    header("Location: inicioSesion.html");
+    header("Location: inicioSesion.php");
     exit();
 }
 ?>
