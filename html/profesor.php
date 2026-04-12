@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 include("../programas/obtener_datos_profesor.php");
 
 // Validar sesión
@@ -9,7 +9,6 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 3) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,17 +22,19 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 3) {
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <h2>DriverCar</h2>
-
+        <div class="sidebar-logo">
+            <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
+            <span>drivercar</span>
+        </div>
         <ul>
-            <li onclick="mostrar('estudiantes')">Estudiantes</li>
-            <li onclick="mostrar('clases_programadas')">Clases Programadas</li>
-            <li onclick="mostrar('cursos')">Cursos</li>
-            <li onclick="mostrar('autos')">Autos</li>
-            <li onclick="mostrar('notas')">Notas</li>
-            <li onclick="mostrar('perfil')">Mi Perfil</li>
+            <li onclick="mostrar('dashboard', this)" class="active">🏠 Inicio</li>
+            <li onclick="mostrar('estudiantes', this)">👥 Estudiantes</li>
+            <li onclick="mostrar('clases_programadas', this)">📅 Clases</li>
+            <li onclick="mostrar('cursos', this)">🎓 Cursos</li>
+            <li onclick="mostrar('autos', this)">🚗 Autos</li>
+            <li onclick="mostrar('notas', this)">📝 Notas</li>
+            <li onclick="mostrar('perfil', this)">👤 Mi Perfil</li>
         </ul>
-
         <a href="../programas/logout.php" class="logout">Cerrar sesión</a>
     </div>
 
@@ -41,220 +42,293 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 3) {
     <div class="content">
 
         <div class="header">
-            <h2>Panel Profesor</h2>
+            <div class="header-perfil">
+                <div class="avatar">
+                    <?php echo strtoupper(substr($perfil['nombre'], 0, 1)); ?>
+                </div>
+                <div>
+                    <h2>Bienvenido, <?php echo $perfil['nombre']; ?></h2>
+                    <p><?php echo $perfil['correo']; ?></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard" class="section">
+            <div class="section-tag">● RESUMEN</div>
+            <h3 class="section-titulo">Tu panel de <span class="highlight">profesor</span></h3>
+
+            <div class="dashboard-grid">
+
+                <?php
+                mysqli_data_seek($resEstudiantes, 0);
+                $totalEst = mysqli_num_rows($resEstudiantes);
+                mysqli_data_seek($resEstudiantes, 0);
+                ?>
+                <div class="dash-card">
+                    <div class="dash-card-icon">👥</div>
+                    <div class="dash-card-info">
+                        <span class="dash-label">Estudiantes</span>
+                        <span class="dash-value"><?php echo $totalEst; ?></span>
+                        <span class="dash-sub">Asignados a ti</span>
+                    </div>
+                </div>
+
+                <?php
+                mysqli_data_seek($resClases_programadas, 0);
+                $totalClases = mysqli_num_rows($resClases_programadas);
+                mysqli_data_seek($resClases_programadas, 0);
+                ?>
+                <div class="dash-card">
+                    <div class="dash-card-icon">📅</div>
+                    <div class="dash-card-info">
+                        <span class="dash-label">Clases programadas</span>
+                        <span class="dash-value"><?php echo $totalClases; ?></span>
+                        <span class="dash-sub">En total</span>
+                    </div>
+                </div>
+
+                <?php
+                mysqli_data_seek($resAutos, 0);
+                $totalAutos = mysqli_num_rows($resAutos);
+                mysqli_data_seek($resAutos, 0);
+                ?>
+                <div class="dash-card">
+                    <div class="dash-card-icon">🚗</div>
+                    <div class="dash-card-info">
+                        <span class="dash-label">Vehículos</span>
+                        <span class="dash-value"><?php echo $totalAutos; ?></span>
+                        <span class="dash-sub">Asignados a ti</span>
+                    </div>
+                </div>
+
+                <?php
+                mysqli_data_seek($resNotas, 0);
+                $totalNotas = mysqli_num_rows($resNotas);
+                mysqli_data_seek($resNotas, 0);
+                ?>
+                <div class="dash-card">
+                    <div class="dash-card-icon">📝</div>
+                    <div class="dash-card-info">
+                        <span class="dash-label">Notas registradas</span>
+                        <span class="dash-value"><?php echo $totalNotas; ?></span>
+                        <span class="dash-sub">En total</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- ESTUDIANTES -->
-        <div id="estudiantes" class="section">
-            <h3>Lista de Estudiantes</h3>
+        <div id="estudiantes" class="section oculto">
+            <div class="section-tag">● MIS ESTUDIANTES</div>
+            <h3 class="section-titulo">Lista de <span class="highlight">Estudiantes</span></h3>
 
-            <select>
-                <?php while($est = mysqli_fetch_assoc($resEstudiantes)) { ?>
-                  <option value="<?php echo $est['id_estudiante']; ?>">
-                    <?php echo $est['nombre']; ?>
-                    <?php echo $est['apellido']; ?>
-                </option>
-            <?php } ?>
-            </select>
-
-            <ul>
-                <?php 
-                mysqli_data_seek($resEstudiantes, 0); // reiniciar
+            <div class="cards-grid">
+                <?php
+                mysqli_data_seek($resEstudiantes, 0);
                 while($est = mysqli_fetch_assoc($resEstudiantes)) { ?>
-                    <li><?php echo $est['nombre']; ?></li>
-                    <li><?php echo $est['apellido']; ?></li>
+                    <div class="card">
+                        <div class="card-avatar">
+                            <?php echo strtoupper(substr($est['nombre'], 0, 1)); ?>
+                        </div>
+                        <h3><?php echo $est['nombre'] . " " . $est['apellido']; ?></h3>
+                        <span class="badge badge-completada">Estudiante activo</span>
+                    </div>
                 <?php } ?>
-            </ul>
+            </div>
         </div>
-        <!--clases_programadas-->
+
+        <!-- CLASES PROGRAMADAS -->
         <div id="clases_programadas" class="section oculto">
-    <h3>Mis clases programadas</h3>
-    <table border="1">
-        <tr>
-            <th>Estudiante</th>
-            <th>Profesor</th>
-            <th>Auto</th>
-            <th>Dia</th>
-            <th>Bloque</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-        </tr>
-        <?php
-$dias = [
-    1 => "Lunes",
-    2 => "Martes",
-    3 => "Miércoles",
-    4 => "Jueves",
-    5 => "Viernes",
-    6 => "Sábado"
-];
+            <div class="section-tag">● PROGRAMACIÓN</div>
+            <h3 class="section-titulo">Mis <span class="highlight">Clases</span></h3>
 
-$bloques = [
-    1 => "06:00:00 - 08:00:00",
-    2 => "08:00:00 - 10:00:00",
-    3 => "10:00:00 - 12:00:00",
-    4 => "12:00:00 - 14:00:00",
-    5 => "14:00:00 - 16:00:00",
-    6 => "16:00:00 - 18:00:00"
-];
-?>
-   
-        <?php while($clases_programadas = mysqli_fetch_assoc($resClases_programadas)) { ?>
-        <tr>
-            <td><?php echo $clases_programadas['Estudiante'] . " " . $clases_programadas['Apellido']; ?></td>
-            <td><?php echo $clases_programadas['Profesor'] . " " . $clases_programadas['ApellidoProfesor']; ?></td>
-            <td><?php echo $clases_programadas['Auto']; ?></td>
-            <td><?php echo $dias[$clases_programadas['Dia']]; ?></td>
-            <td><?php echo $bloques[$clases_programadas['Bloque']]; ?></td>
-            <td><?php echo $clases_programadas['Fecha']; ?></td>
-            <td><?php echo $clases_programadas['Estado']; ?></td>
-        </tr>
-        <?php } ?>
-    </table>
-    </div>
-
-        <!-- CURSOS -->
-        <div id="cursos" class="section oculto">
-            <h3>Cursos</h3>
-
-            <?php while($curso = mysqli_fetch_assoc($resCursos)) { ?>
+            <?php
+            $dias = [1=>"Lunes",2=>"Martes",3=>"Miércoles",4=>"Jueves",5=>"Viernes",6=>"Sábado"];
+            $bloques = [1=>"06:00 - 08:00",2=>"08:00 - 10:00",3=>"10:00 - 12:00",4=>"12:00 - 14:00",5=>"14:00 - 16:00",6=>"16:00 - 18:00"];
+            mysqli_data_seek($resClases_programadas, 0);
+            while($clase = mysqli_fetch_assoc($resClases_programadas)) { ?>
                 <div class="card">
-                    <p><strong>Modalidad:</strong> <?php echo $curso['modalidad']; ?></p>
-                    <p><strong>Licencia:</strong> <?php echo $curso['tipo_licencia']; ?></p>
-                    <p><strong>Estudiante:</strong> <?php echo $curso['nombre'] . " " . $curso['apellido']; ?></p>
+                    <div class="card-top">
+                        <div>
+                            <p><strong>Estudiante:</strong> <?php echo $clase['Estudiante'] . " " . $clase['Apellido']; ?></p>
+                            <p><strong>Auto:</strong> <?php echo $clase['Auto']; ?></p>
+                            <p><strong>Día:</strong> <?php echo $dias[$clase['Dia']]; ?></p>
+                            <p><strong>Horario:</strong> <?php echo $bloques[$clase['Bloque']]; ?></p>
+                            <p><strong>Fecha:</strong> <?php echo $clase['Fecha']; ?></p>
+                        </div>
+                        <div>
+                            <?php
+                            $estado = $clase['Estado'];
+                            $badgeClass = 'badge-pendiente';
+                            if($estado == 'Completada') $badgeClass = 'badge-completada';
+                            if($estado == 'Cancelada') $badgeClass = 'badge-cancelada';
+                            ?>
+                            <span class="badge <?php echo $badgeClass; ?>"><?php echo $estado; ?></span>
+                        </div>
+                    </div>
                 </div>
             <?php } ?>
         </div>
+
+        <!-- CURSOS -->
+        <div id="cursos" class="section oculto">
+            <div class="section-tag">● FORMACIÓN</div>
+            <h3 class="section-titulo">Mis <span class="highlight">Cursos</span></h3>
+
+            <div class="cards-grid">
+                <?php
+                mysqli_data_seek($resCursos, 0);
+                while($curso = mysqli_fetch_assoc($resCursos)) { ?>
+                    <div class="card">
+                        <div class="card-icon">🎓</div>
+                        <h3><?php echo $curso['nombre'] . " " . $curso['apellido']; ?></h3>
+                        <p><strong>Modalidad:</strong> <?php echo $curso['modalidad']; ?></p>
+                        <p><strong>Licencia:</strong> <?php echo $curso['tipo_licencia']; ?></p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <!-- AUTOS -->
         <div id="autos" class="section oculto">
-    <h3>Mis Autos</h3>
+            <div class="section-tag">● VEHÍCULOS</div>
+            <h3 class="section-titulo">Mis <span class="highlight">Autos</span></h3>
 
-    <table border="1">
-        <tr>
-            <th>Placa</th>
-            <th>Tecnomecanica vencimiento</th>
-            <th>Tipo</th>
-            <th>Modelo</th>
-            <th>Tipo licencia</th>
-        </tr>
+            <div class="cards-grid">
+                <?php
+                mysqli_data_seek($resAutos, 0);
+                while($auto = mysqli_fetch_assoc($resAutos)) { ?>
+                    <div class="card">
+                        <div class="card-icon">🚗</div>
+                        <h3><?php echo $auto['placa']; ?></h3>
+                        <p><strong>Modelo:</strong> <?php echo $auto['modelo']; ?></p>
+                        <p><strong>Tipo:</strong> <?php echo $auto['tipo_vehiculo']; ?></p>
+                        <p><strong>Licencia:</strong> <?php echo $auto['tipo_licencia']; ?></p>
+                        <p><strong>Tecnomecánica:</strong> <?php echo $auto['tecnomecanica_vencimiento']; ?></p>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
 
-        <?php while($auto = mysqli_fetch_assoc($resAutos)) { ?>
-        <tr>
-            <td><?php echo $auto['placa']; ?></td>
-            <td><?php echo $auto['tecnomecanica_vencimiento']; ?></td>
-            <td><?php echo $auto['tipo_vehiculo']; ?></td>
-            <td><?php echo $auto['modelo']; ?></td>
-            <td><?php echo $auto['tipo_licencia']; ?></td>
-        </tr>
-        <?php } ?>
-    </table>
+        <!-- NOTAS -->
+        <div id="notas" class="section oculto">
+            <div class="section-tag">● EVALUACIONES</div>
+            <h3 class="section-titulo">Mis <span class="highlight">Notas</span></h3>
+
+            <?php if(mysqli_num_rows($resNotas) == 0){ ?>
+                <p class="empty-msg">No hay notas registradas</p>
+            <?php } ?>
+
+            <?php
+            mysqli_data_seek($resNotas, 0);
+            while($nota = mysqli_fetch_assoc($resNotas)) { ?>
+                <div class="card">
+                    <p><strong>Estudiante:</strong> <?php echo $nota['nombre'] . " " . $nota['apellido']; ?></p>
+                    <p><strong>Modalidad:</strong> <?php echo $nota['modalidad']; ?></p>
+                    <p><strong>Observación:</strong> <?php echo $nota['observacion']; ?></p>
+                </div>
+            <?php } ?>
+
+            <div class="form-card">
+                <h3>Agregar nueva nota</h3>
+                <form method="POST" action="../programas/guardar_nota.php">
+
+                    <div class="form-group">
+                        <label>Estudiante</label>
+                        <select name="id_estudiante" required>
+                            <?php
+                            mysqli_data_seek($resEstudiantes, 0);
+                            while($est = mysqli_fetch_assoc($resEstudiantes)) { ?>
+                                <option value="<?php echo $est['id_estudiante']; ?>">
+                                    <?php echo $est['nombre'] . " " . $est['apellido']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Modalidad</label>
+                        <select name="modalidad">
+                            <option value="Teorico">Teórico</option>
+                            <option value="Practico">Práctico</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Observación</label>
+                        <textarea name="observacion" placeholder="Escribe la observación..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-principal">Guardar nota</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PERFIL -->
+        <div id="perfil" class="section oculto">
+            <div class="section-tag">● INFORMACIÓN</div>
+            <h3 class="section-titulo">Mi <span class="highlight">Perfil</span></h3>
+            <div class="card">
+                <p><strong>Nombre:</strong> <?php echo $perfil['nombre'] . " " . $perfil['apellido']; ?></p>
+                <p><strong>Correo:</strong> <?php echo $perfil['correo']; ?></p>
+                <p><strong>Categoría Licencia:</strong> <?php echo $perfil['licencia_categoria']; ?></p>
+                <p><strong>Vencimiento:</strong> <?php echo $perfil['vencimiento_licencia']; ?></p>
+                <p><strong>Experiencia:</strong> <?php echo $perfil['experiencia_anios']; ?> años</p>
+                <p><strong>Certificado:</strong> <?php echo $perfil['certificado_idoneidad']; ?></p>
+                <button type="button" onclick="mostrar('editarPerfil', this)">Editar perfil</button>
+            </div>
+        </div>
+
+        <!-- EDITAR PERFIL -->
+        <div id="editarPerfil" class="section oculto">
+            <div class="section-tag">● EDITAR</div>
+            <h3 class="section-titulo">Editar <span class="highlight">Perfil</span></h3>
+            <form method="POST" action="../programas/actualizar_perfil.php">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" value="<?php echo $perfil['nombre']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input type="text" name="apellido" value="<?php echo $perfil['apellido']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="email" name="correo" value="<?php echo $perfil['correo']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría Licencia</label>
+                    <input type="text" name="licencia_categoria" value="<?php echo $perfil['licencia_categoria']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Vencimiento Licencia</label>
+                    <input type="date" name="vencimiento_licencia" value="<?php echo $perfil['vencimiento_licencia']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Experiencia (años)</label>
+                    <input type="number" name="experiencia_anios" value="<?php echo $perfil['experiencia_anios']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Certificado</label>
+                    <input type="text" name="certificado_idoneidad" value="<?php echo $perfil['certificado_idoneidad']; ?>">
+                </div>
+                <button type="submit" class="btn-principal">Guardar cambios</button>
+            </form>
+        </div>
+
     </div>
-    <div id="notas" class="section oculto">
-    <h3>Notas</h3>
-    
-
-    <table border="1">
-       <tr>
-        <th>Estudiante</th>
-        <th>Modalidad</th>
-        <th>Observación</th>
-    </tr>
-
-    <?php if(mysqli_num_rows($resNotas) == 0){ ?>
-        <tr><td colspan="3">No hay notas registradas</td></tr>
-    <?php } ?>
-
-    <?php while($nota = mysqli_fetch_assoc($resNotas)) { ?>
-    <tr>
-        <td><?php echo $nota['nombre'] . " " . $nota['apellido']; ?></td>
-        <td><?php echo $nota['modalidad']; ?></td>
-        <td><?php echo $nota['observacion']; ?></td>
-    </tr>
-    <?php } ?>
-    </table>
-    <h4>Agregar nueva nota</h4>
-    <form method="POST" action="../programas/guardar_nota.php">
-
-    <label>Estudiante:</label>
-    <select name="id_estudiante" required>
-        <?php 
-        mysqli_data_seek($resEstudiantes, 0);
-        while($est = mysqli_fetch_assoc($resEstudiantes)) { ?>
-            <option value="<?php echo $est['id_estudiante']; ?>">
-                <?php echo $est['nombre'] . " " . $est['apellido']; ?>
-            </option>
-        <?php } ?>
-    </select>
-
-    <label>Modalidad:</label>
-    <select name="modalidad">
-        <option value="Teorico">Teórico</option>
-        <option value="Practico">Práctico</option>
-    </select>
-
-    <label>Observación:</label>
-    <textarea name="observacion"></textarea>
-
-    <button type="submit">Guardar</button>
-
-</form>
-</div>
-
-
-<div id="perfil" class="section oculto">
-    <h3>Mi Perfil</h3>
-
-    <div class="card">
-        <p><strong>Nombre:</strong> <?php echo $perfil['nombre'] . " " . $perfil['apellido']; ?></p>
-        <p><strong>Correo:</strong> <?php echo $perfil['correo']; ?></p>
-        <p><strong>Categoría Licencia:</strong> <?php echo $perfil['licencia_categoria']; ?></p>
-        <p><strong>Vencimiento Licencia:</strong> <?php echo $perfil['vencimiento_licencia']; ?></p>
-        <p><strong>Experiencia:</strong> <?php echo $perfil['experiencia_anios']; ?> años</p>
-        <p><strong>Certificado:</strong> <?php echo $perfil['certificado_idoneidad']; ?></p>
-        <button onclick="mostrar('editarPerfil')">Editar perfil</button>
-    </div>
-    </div>
-<div id="editarPerfil" class="section oculto">
-    <h3>Editar Perfil</h3>
-
-    <form method="POST" action="../programas/actualizar_perfil.php">
-
-        <label>Nombre:</label>
-        <input type="text" name="nombre" value="<?php echo $perfil['nombre']; ?>" required>
-
-        <label>Apellido:</label>
-        <input type="text" name="apellido" value="<?php echo $perfil['apellido']; ?>" required>
-
-        <label>Correo:</label>
-        <input type="email" name="correo" value="<?php echo $perfil['correo']; ?>" required>
-
-        <label>Categoría Licencia:</label>
-        <input type="text" name="licencia_categoria" value="<?php echo $perfil['licencia_categoria']; ?>">
-
-        <label>Vencimiento Licencia:</label>
-        <input type="date" name="vencimiento_licencia" value="<?php echo $perfil['vencimiento_licencia']; ?>">
-
-        <label>Experiencia (años):</label>
-        <input type="number" name="experiencia_anios" value="<?php echo $perfil['experiencia_anios']; ?>">
-
-        <label>Certificado:</label>
-        <input type="text" name="certificado_idoneidad" value="<?php echo $perfil['certificado_idoneidad']; ?>">
-
-        <button type="submit">Guardar cambios</button>
-    </form>
-</div>
-</div>
-
-</div>
-    </div>
-
 </div>
 
 <script>
-function mostrar(seccion) {
-    document.querySelectorAll('.section').forEach(sec => {
-        sec.classList.add('oculto');
-    });
+function mostrar(seccion, elemento) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('oculto'));
     document.getElementById(seccion).classList.remove('oculto');
+    document.querySelectorAll('.sidebar ul li').forEach(li => li.classList.remove('active'));
+    if(elemento && elemento.tagName === 'LI') {
+        elemento.classList.add('active');
+    }
 }
 </script>
 
