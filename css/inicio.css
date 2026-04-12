@@ -30,7 +30,8 @@
 /* BODY CON IMAGEN + OSCURO */
 .inicio-bg {
     font-family: 'Segoe UI', sans-serif;
-    background: url('../imagenes/moto.jpg');
+    background: linear-gradient(rgba(38, 40, 51, 0.85), rgba(38, 40, 51, 0.85)),
+    url('../imagenes/moto.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -149,7 +150,7 @@ header {
 }
 
 /* TEXTO PEQUEÑO */
-.hero .badge {
+.hero span {
     background: rgba(100,255,218,0.1);
     color: #64ffda;
     padding: 5px 12px;
@@ -168,6 +169,8 @@ header {
 /* TEXTO DESTACADO */
 .hero h2 span {
     color: #64ffda;
+    background: none;
+    font-size: inherit;
 }
 
 /* PARRAFO */

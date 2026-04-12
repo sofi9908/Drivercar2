@@ -7,23 +7,44 @@
     <link rel="stylesheet" href="../css/inicioSesion.css">
 </head>
 <body>
-<div class="container-wrap">
-    <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
 
-    <div class="registro-container">
-        <h2>Iniciar Sesión</h2>
+    <div class="bg-overlay"></div>
 
-        <form action="../programas/login.php" method="POST">
-            <label>Correo electrónico</label>
-            <input type="email" name="email" required>
+    <div class="container-wrap">
 
-            <label>Contraseña</label>
-            <input type="password" name="password" required>
-            <button type="submit">Ingresar</button>
-            <a href="../programas/recuperar.php">¿Olvidaste tu contraseña?</a>
-        </form>
+        <button class="btn-volver" onclick="window.location.href='../index.html'">⬅ Volver</button>
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
+                <span>drivercar</span>
+            </div>
+
+            <h2>Iniciar <span class="highlight">Sesión</span></h2>
+            <p class="subtitulo">Bienvenido de nuevo, ingresa tus datos</p>
+
+            <form action="../programas/login.php" method="POST">
+
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" name="email" placeholder="tu@correo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-ingresar">Ingresar</button>
+
+                <a href="../programas/recuperar.php" class="link-recuperar">¿Olvidaste tu contraseña?</a>
+
+            </form>
+
+        </div>
+
     </div>
-</div>
 
 <script>
 document.getElementById("formLogin").addEventListener("submit", function(e){

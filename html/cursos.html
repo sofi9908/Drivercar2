@@ -9,53 +9,89 @@
 <body>
 
     <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/fondo.jpg" alt="Drivercar Logo">
+        </div>
         <a href="../index.html" class="menu-item">inicio</a>
         <a href="info.html" class="menu-item">informacion</a>
         <a href="cursos.html" class="menu-item active">cursos</a>
         <a href="contactenos.html" class="menu-item">contactenos</a>
     </div>
 
-    <header>
-        <button class="btn-volver"
-            onclick="if(history.length>1){history.back();} else {window.location.href='inicio.html';}">
-            ⬅ Volver
-        </button>
-        <h1>Cursos</h1>
-    </header>
+    <div class="main-wrapper">
 
-    <main>
-        <h2>Cursos disponibles</h2>
+        <header>
+            <button class="btn-volver"
+                onclick="if(history.length>1){history.back();} else {window.location.href='../index.html';}">
+                ⬅ Volver
+            </button>
+            <h1>Cursos</h1>
+        </header>
 
-    <div class="curso">
-    <h3>🏍️ Curso A1 – Motocicleta</h3>
-    <p> Dirigido a personas que desean aprender a conducir motocicletas de bajo cilindraje. Incluye formación teórica sobre normas de tránsito, señales viales y seguridad, junto con prácticas de manejo, equilibrio, frenado y circulación en vía pública. Ideal para principiantes.</p>
-</div>
+        <main>
+            <div class="section-tag">● FORMACIÓN VIAL</div>
+            <h2 class="section-title">Cursos <span class="highlight">disponibles</span></h2>
 
-<div class="curso">
-    <h3>🏍️ Curso A2 – Motocicleta</h3>
-    <p>Dirigido a personas que desean aprender a conducir motocicletas de mayor cilindraje. Incluye formación teórica sobre normas de tránsito, señales viales y seguridad, junto con prácticas de manejo, equilibrio, frenado y circulación en vía pública.  </p>
-</div>
+            <div class="cursos-grid">
 
-<div class="curso">
-    <h3>🚗 Curso B1 – Vehículos particulares</h3>
-    <p>Dirigido a personas que desean aprender a conducir carros, camionetas de uso personal. Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas de manejo en diefrentes tipos de vías.</p>
-</div>
+                <div class="curso-card">
+                    <div class="curso-icon">🏍️</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría A1</div>
+                        <h3>Motocicleta</h3>
+                        <p>Dirigido a personas que desean aprender a conducir motocicletas de bajo cilindraje. Incluye formación teórica sobre normas de tránsito, señales viales y seguridad, junto con prácticas de manejo, equilibrio, frenado y circulación en vía pública. Ideal para principiantes.</p>
+                    </div>
+                </div>
 
-<div class="curso">
-    <h3>🚕 Curso B2 – Servicio público</h3>
-<p>Dirigido a personas que desean aprender a conducir taxis, perfecto para transporte de pasajeros, uso de trabajo.Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas de manejo en diefrentes tipos de vías.</p>
-</div>
+                <div class="curso-card">
+                    <div class="curso-icon">🏍️</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría A2</div>
+                        <h3>Motocicleta</h3>
+                        <p>Dirigido a personas que desean aprender a conducir motocicletas de mayor cilindraje. Incluye formación teórica sobre normas de tránsito, señales viales y seguridad, junto con prácticas de manejo, equilibrio, frenado y circulación en vía pública.</p>
+                    </div>
+                </div>
 
-<div class="curso">
-    <h3>🚗 Curso C1 – Carga liviana</h3>
-    <p>Curso enfocado en vehículos y camiones pequeños para transporte de mercancia.Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas de manejo en diefrentes tipos de vías.</p>
-</div>
+                <div class="curso-card">
+                    <div class="curso-icon">🚗</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría B1</div>
+                        <h3>Vehículos particulares</h3>
+                        <p>Dirigido a personas que desean aprender a conducir carros y camionetas de uso personal. Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas en diferentes tipos de vías.</p>
+                    </div>
+                </div>
 
-<div class="curso">
-    <h3>🚛 Curso C2 – Carga pesada</h3>
-    <p>Curso especializado para la conducción de camione de carga pesada.Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas de manejo en diefrentes tipos de vías.</p>
-</div>
-    </main>
+                <div class="curso-card">
+                    <div class="curso-icon">🚕</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría B2</div>
+                        <h3>Servicio público</h3>
+                        <p>Dirigido a personas que desean conducir taxis y vehículos de transporte de pasajeros. Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas en diferentes tipos de vías.</p>
+                    </div>
+                </div>
+
+                <div class="curso-card">
+                    <div class="curso-icon">🚐</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría C1</div>
+                        <h3>Carga liviana</h3>
+                        <p>Curso enfocado en vehículos y camiones pequeños para transporte de mercancía. Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas en diferentes tipos de vías.</p>
+                    </div>
+                </div>
+
+                <div class="curso-card">
+                    <div class="curso-icon">🚛</div>
+                    <div class="curso-info">
+                        <div class="curso-badge">Categoría C2</div>
+                        <h3>Carga pesada</h3>
+                        <p>Curso especializado para la conducción de camiones de carga pesada. Incluye formación teórica sobre normas de tránsito, parqueo, señales viales y seguridad, junto con prácticas en diferentes tipos de vías.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
 
 </body>
 </html>

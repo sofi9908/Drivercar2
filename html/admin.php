@@ -83,7 +83,39 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1) {
 
         </table>
     </div>
+    <?php
+$sql_mensajes = "SELECT * FROM mensajes ORDER BY fecha DESC";
+$resultado_mensajes = mysqli_query($conexion, $sql_mensajes);
+?>
 
+<div class="card">
+    <h3>Mensajes recibidos</h3>
+
+    <?php if(mysqli_num_rows($resultado_mensajes) == 0){ ?>
+        <p>No hay mensajes aún.</p>
+    <?php } else { ?>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+        </tr>
+
+        <?php while($msg = mysqli_fetch_assoc($resultado_mensajes)){ ?>
+        <tr>
+            <td><?php echo $msg['id']; ?></td>
+            <td><?php echo $msg['nombre']; ?></td>
+            <td><?php echo $msg['correo']; ?></td>
+            <td><?php echo $msg['mensaje']; ?></td>
+            <td><?php echo $msg['fecha']; ?></td>
+        </tr>
+        <?php } ?>
+
+    </table>
+    <?php } ?>
+</div>
     <a href="../programas/logout.php" class="logout">Cerrar sesión</a>
 
 </div>

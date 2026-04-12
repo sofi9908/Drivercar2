@@ -1,109 +1,183 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* FONDO GENERAL */
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-/* LINK RECUPERAR */
-body > a {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-body > a:hover {
-    text-decoration: underline;
-}
-
-/* CONTENEDOR PRINCIPAL */
-.container-wrap {
+    justify-content: center;
+    background-color: #1a1f2e;
     position: relative;
 }
 
-/* BOTÓN VOLVER */
+/* ── FONDO CON IMAGEN ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('../imagenes/moto_carro.jpg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+/* ── CONTAINER ── */
+.container-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+/* ── BOTÓN VOLVER ── */
 .btn-volver {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    background: #e74c3c;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 14px;
     transition: 0.3s;
+    align-self: flex-start;
+    margin-left: calc(50% - 220px);
 }
 
 .btn-volver:hover {
-    background: #c0392b;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* TARJETA LOGIN */
-.registro-container {
-    background: white;
-    padding: 30px;
-    width: 320px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+/* ── LOGIN CARD ── */
+.login-card {
+    background-color: #1e2336;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px 40px;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
-/* TITULO */
-.registro-container h2 {
+/* ── LOGO ── */
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.login-logo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.login-logo span {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ── TÍTULOS ── */
+.login-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
     text-align: center;
-    margin-bottom: 20px;
-    color: #1e3c72;
 }
 
-/* LABEL */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
+.highlight {
+    color: #00e5b0;
 }
 
-/* INPUT */
-input {
+.subtitulo {
+    font-size: 14px;
+    color: #a0aabb;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ── FORMULARIO ── */
+form {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 10px;
 }
 
-/* EFECTO INPUT */
-input:focus {
-    border-color: #2a5298;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a0aabb;
+}
+
+.form-group input {
+    background-color: #12151f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: #ffffff;
+    font-size: 14px;
     outline: none;
-    box-shadow: 0 0 5px rgba(42,82,152,0.3);
+    transition: border-color 0.2s ease;
 }
 
-/* BOTÓN INGRESAR */
-button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background: #1e3c72;
-    color: white;
+.form-group input::placeholder {
+    color: #4a5068;
+}
+
+.form-group input:focus {
+    border-color: #00e5b0;
+}
+
+/* ── BOTÓN INGRESAR ── */
+.btn-ingresar {
+    background-color: #00e5b0;
+    color: #12151f;
     border: none;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 6px;
 }
 
-button[type="submit"]:hover {
-    background: #16325c;
+.btn-ingresar:hover {
+    background-color: #00c99a;
+    transform: translateY(-2px);
+}
+
+/* ── LINK RECUPERAR ── */
+.link-recuperar {
+    text-align: center;
+    font-size: 13px;
+    color: #00e5b0;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.link-recuperar:hover {
+    opacity: 0.7;
 }
